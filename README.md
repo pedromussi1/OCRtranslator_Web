@@ -2,7 +2,7 @@
 <h1 align="center">OCR Translator Web</h1>
 
 <p align="center">
-  <a href="https://youtu.be/nas4T9-hjTs"><img src="https://i.imgur.com/ey8W5al.gif" alt="YouTube Demonstration" width="800"></a>
+  <a href="https://youtu.be/nas4T9-hjTs"><img src="https://i.imgur.com/KCK0WYy.gif" alt="YouTube Demonstration" width="800"></a>
 </p>
 
 <p align="center">A web application that extracts text from images and translates it into different languages, powered by Flask, Tesseract, and Azure Translation API.</p>
