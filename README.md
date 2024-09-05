@@ -56,7 +56,7 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
 <ol>
     <li>Open the application in your web browser.</li>
     <li>Upload an image with text by selecting a file from your local device.</li>
-    <li>Click the "Translate" button to extract and translate the text from the image.</li>
+    <li>Click the "Upload and Translate" button to extract and translate the text from the image.</li>
     <li>The original image, processed image, extracted text, and translated text will be displayed on the results page.</li>
 </ol>
 
