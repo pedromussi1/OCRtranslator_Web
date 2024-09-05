@@ -90,7 +90,7 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
 <h3>Upload Image</h3>
 
 <p align="center">
-  <kbd><img src="https://i.imgur.com/yourimage.png" alt="Upload Image" width="900"></kbd>
+  <kbd><img src="https://i.imgur.com/tYxAQBd.png" alt="Upload Image" width="900"></kbd>
 </p>
 
 <p>The main page allows the user to upload an image containing text. The application then processes this image to extract and translate the text.</p>
@@ -100,7 +100,7 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
 <h3>Processed Image and Results</h3>
 
 <p align="center">
-  <kbd><img src="https://i.imgur.com/yourimage2.png" alt="Results" width="900"></kbd>
+  <kbd><img src="https://i.imgur.com/4XBR3YJ.png" alt="Results" width="900"></kbd>
 </p>
 
 <p>After processing, the application displays the original and processed images, along with the recognized and translated text.</p>
