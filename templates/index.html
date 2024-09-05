@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image for Text Translation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="file"] {
+            padding: 5px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+        .language-cheat-sheet {
+            margin-top: 30px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .language-cheat-sheet h2 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+        .language-cheat-sheet ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .language-cheat-sheet li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image for Text Translation</h1>
+
+    <form class="upload-form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <label for="target_lang">Target Language:</label>
+        <input type="text" name="target_lang" placeholder="en" value="en">
+        <button type="submit">Upload and Translate</button>
+    </form>
+
+    <div class="language-cheat-sheet">
+        <h2>Language Cheat Sheet</h2>
+        <p>Here are some language codes you can use for translation:</p>
+        <ul>
+            <li><strong>English:</strong> <code>en</code></li>
+            <li><strong>Spanish:</strong> <code>es</code></li>
+            <li><strong>French:</strong> <code>fr</code></li>
+            <li><strong>German:</strong> <code>de</code></li>
+            <li><strong>Chinese (Simplified):</strong> <code>zh-cn</code></li>
+            <li><strong>Chinese (Traditional):</strong> <code>zh-tw</code></li>
+            <li><strong>Japanese:</strong> <code>ja</code></li>
+            <li><strong>Korean:</strong> <code>ko</code></li>
+            <li><strong>Brazilian Portuguese:</strong> <code>pt-br</code></li>
+            <li><strong>Portuguese:</strong> <code>pt</code></li>
+            <li><strong>Russian:</strong> <code>ru</code></li>
+            <li><strong>Italian:</strong> <code>it</code></li>
+            <li><strong>Arabic:</strong> <code>ar</code></li>
+            <!-- Add more languages as needed -->
+        </ul>
+    </div>
+</body>
+</html>

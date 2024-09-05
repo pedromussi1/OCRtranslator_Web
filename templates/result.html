@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Recognition Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        img {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            max-width: 20%;
+            height: auto;
+        }
+        .result-text {
+            margin-top: 20px;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap; /* Maintain whitespace formatting */
+            word-wrap: break-word; /* Wrap long words */
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Recognition Result</h1>
+
+    <div class="image-container">
+        <h2>Original Image:</h2>
+        <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Original Image">
+    </div>
+
+    <div class="result-text">
+        <h2>Recognized Text:</h2>
+        <pre>{{ text }}</pre>
+    </div>
+
+    <div class="result-text">
+        <h2>Translated Text:</h2>
+        <pre>{{ translated_text }}</pre>
+    </div>
+
+    <a href="{{ url_for('index') }}">Upload Another Image</a>
+</body>
+</html>
