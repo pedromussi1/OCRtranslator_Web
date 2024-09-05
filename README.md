@@ -1,30 +1,28 @@
 
-<h1 align="center">Comic Recognizer</h1>
+<h1 align="center">OCR Translator Web</h1>
 
 <p align="center">
   <a href="https://youtu.be/nas4T9-hjTs"><img src="https://i.imgur.com/ey8W5al.gif" alt="YouTube Demonstration" width="800"></a>
 </p>
 
-<p align="center">A machine learning-powered web application to identify comic books by their covers, built with Flask and TensorFlow.</p>
+<p align="center">A web application that extracts text from images and translates it into different languages, powered by Flask, Tesseract, and Azure Translation API.</p>
 
 <h2>Description</h2>
 
-<p>The goal of this project was to develop a program that uses image recognition to identify comic books based on their covers. Built with Flask and a custom-trained machine learning model, the application allows users to upload an image of a comic book cover and receive identification results. The system processes and classifies the uploaded images, providing users with relevant information about the comic book. This tool can be particularly useful for comic book collectors, retailers, and enthusiasts.</p>
+<p>The OCR Translator Web project is a web-based application designed to recognize text from images and translate it into various languages. The application leverages Tesseract OCR for text extraction, OpenCV for image preprocessing, and Azure Translation API for language translation. Users can upload an image containing text, and the system will process it to display the extracted and translated text. This tool is particularly useful for translating foreign documents, street signs, or any text captured via images.</p>
 
 <h2>Languages and Utilities Used</h2>
 <ul>
-    <li><b>Flask:</b> Serves the web application and handles routing.</li>
-    <li><b>Python:</b> Core programming language for logic and model integration.</li>
-    <li><b>TensorFlow:</b> Used to build and train the image classification model.</li>
-    <li><b>OpenCV:</b> Handles image processing tasks before classification.</li>
-    <li><b>HTML/CSS/JavaScript:</b> Builds the frontend interface.</li>
-    <li><b>NumPy:</b> Performs numerical operations on image data.</li>
-    <li><b>Pandas:</b> Used for data manipulation and preparation.</li>
+    <li><b>Flask:</b> Serves as the backbone of the web application, handling routing, user inputs, and rendering HTML templates.</li>
+    <li><b>Python:</b> The primary language used for integrating various functionalities like OCR and translation.</li>
+    <li><b>OpenCV:</b> Handles preprocessing of images, such as converting images to grayscale and preparing them for OCR processing.</li>
+    <li><b>Tesseract OCR:</b> The main technology for recognizing text from images, capable of handling multiple languages.</li>
+    <li><b>pytesseract:</b> A Python wrapper for Tesseract, simplifying the integration of OCR functionalities within the application.</li>
+    <li><b>Azure Translation API:</b> Used to translate the extracted text into the desired target language.</li>
+    <li><b>HTML/CSS:</b> Creates the frontend of the application, providing a simple and intuitive user interface.</li>
 </ul>
 
-
 <h2>Environments Used</h2>
-
 <ul>
   <li><b>Windows 11</b></li>
   <li><b>Visual Studio Code</b></li>
@@ -33,8 +31,8 @@
 <h2>Installation</h2>
 <ol>
     <li><strong>Clone the Repository:</strong>
-        <pre><code>git clone https://github.com/yourusername/comic-book-identifier.git
-cd comic-book-identifier</code></pre>
+        <pre><code>git clone https://github.com/yourusername/ocr-translator-web.git
+cd ocr-translator-web</code></pre>
     </li>
     <li><strong>Create and Activate a Virtual Environment:</strong>
         <pre><code>python -m venv .venv
@@ -43,10 +41,9 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
     <li><strong>Install Dependencies:</strong>
         <pre><code>pip install -r requirements.txt</code></pre>
     </li>
-    <li><strong>Add Your Model and Data:</strong>
+    <li><strong>Configure Azure API Key:</strong>
         <ul>
-            <li>Place your trained model file (e.g., <code>model.h5</code>) in the <code>static/models</code> directory.</li>
-            <li>Ensure your dataset is properly organized in the <code>data</code> directory.</li>
+            <li>Set up your Azure Translation API key and endpoint in a configuration file or as environment variables.</li>
         </ul>
     </li>
     <li><strong>Run the Application:</strong>
@@ -58,71 +55,53 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
 <h2>Usage</h2>
 <ol>
     <li>Open the application in your web browser.</li>
-    <li>Choose a comic book cover image from your local files using the file input field.</li>
-    <li>Click the "Identify Comic" button to upload the image and process it.</li>
-    <li>The result will display below the upload form, showing the identified comic book.</li>
+    <li>Upload an image with text by selecting a file from your local device.</li>
+    <li>Click the "Translate" button to extract and translate the text from the image.</li>
+    <li>The original image, processed image, extracted text, and translated text will be displayed on the results page.</li>
 </ol>
 
 <h2>Code Structure</h2>
 <ul>
-    <li><strong>app.py:</strong> Main application file, contains routes and logic for preprocessing and classification.</li>
-    <li><strong>static/:</strong> Contains static files such as CSS, JavaScript, and images.</li>
-    <li><strong>templates/:</strong> HTML templates for rendering the web pages.</li>
-    <li><strong>data/:</strong> Contains image data and any additional resources.</li>
-    <li><strong>models/:</strong> Stores the trained machine learning model.</li>
+    <li><strong>app.py:</strong> Main application file that contains routes, image processing logic, and OCR/translation functionalities.</li>
+    <li><strong>static/:</strong> Contains static files such as uploaded images and stylesheets.</li>
+    <li><strong>templates/:</strong> HTML templates used for rendering the web pages.</li>
+    <li><strong>uploads/:</strong> Stores uploaded images for processing.</li>
+    <li><strong>Dockerfile:</strong> Defines the Docker configuration for containerizing the application.</li>
 </ul>
 
 <h2>Known Issues</h2>
 <ul>
-    <li>Images with different backgrounds may affect the identification accuracy.</li>
-    <li>The application may require fine-tuning for better performance on diverse datasets.</li>
+    <li>Images with low quality or poor lighting may result in inaccurate text extraction.</li>
+    <li>Translation accuracy depends on the language model used by Azure Translator.</li>
 </ul>
-
 
 <h2>Contributing</h2>
 <p>Contributions are welcome! Please fork the repository, create a new branch, and submit a pull request with your changes. For major changes, please open an issue first to discuss what you would like to change.</p>
 
+<h2>Deployment</h2>
+<p>The application uses Docker for containerization, ensuring consistent environments across different platforms. Fly.io is used for deploying the application, providing a scalable and globally distributed infrastructure for web hosting.</p>
+
 <p>
 
 <h2>
-<a href="https://github.com/pedromussi1/comic-recognizer/blob/main/READCODE.md">Code Breakdown Here!</a>
+<a href="https://github.com/yourusername/ocr-translator-web/blob/main/READCODE.md">Code Breakdown Here!</a>
 </h2>
 
-<h3>Comic Book Cover</h3>
+<h3>Upload Image</h3>
 
 <p align="center">
-  <kbd><img src="https://i.imgur.com/SrQ3qVB.png" alt="ComicBook" width="900"></kbd>
+  <kbd><img src="https://i.imgur.com/yourimage.png" alt="Upload Image" width="900"></kbd>
 </p>
 
-<p>The main page gives the option for the user to choose a comic cover from their computer. Clicking on "identify Comic" before choosing a comic cover will do nothing.</p>
+<p>The main page allows the user to upload an image containing text. The application then processes this image to extract and translate the text.</p>
 
 <hr>
 
-<h3>Choosing a file</h3>
+<h3>Processed Image and Results</h3>
 
 <p align="center">
-  <kbd><img src="https://i.imgur.com/HvubM7R.png" alt="ChoosingCover"></kbd>
+  <kbd><img src="https://i.imgur.com/yourimage2.png" alt="Results" width="900"></kbd>
 </p>
 
-<p>After clicking on "Choose a Comic Cover", you will click on the image with a comic book cover you want to identify and click "Open".</p>
-
-<hr>
-
-<h3>Analyzing the file</h3>
-
-<p align="center">
-  <kbd><img src="https://i.imgur.com/tZLRLJb.png" alt="TranslatingText"></kbd>
-</p>
-
-<p>After choosing your file, you will see a thumbnail for the image you selected, and you can proceed by clicking on "identify Comic".</p>
-
-<hr>
-
-<h3>Results</h3>
-
-<p align="center">
-  <kbd><img src="https://i.imgur.com/ZWw2c59.png" alt="TranslatingText"></kbd>
-</p>
-
-<p>You will then see what the program identified your comic book to be. You can also click on "Go Back" and try the progrma again with a different comic book cover.</p>
+<p>After processing, the application displays the original and processed images, along with the recognized and translated text.</p>
 
