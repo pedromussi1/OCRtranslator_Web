@@ -2,7 +2,7 @@
 <h1 align="center">Comic Recognizer</h1>
 
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=h8sp7vFeV7c"><img src="https://i.imgur.com/uPkoNw1.gif" alt="YouTube Demonstration" width="800"></a>
+  <a href="https://youtu.be/nas4T9-hjTs"><img src="https://i.imgur.com/ey8W5al.gif" alt="YouTube Demonstration" width="800"></a>
 </p>
 
 <p align="center">A machine learning-powered web application to identify comic books by their covers, built with Flask and TensorFlow.</p>
