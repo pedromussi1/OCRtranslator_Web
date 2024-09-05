@@ -7,6 +7,8 @@
 
 <p align="center">A web application that extracts text from images and translates it into different languages, powered by Flask, Tesseract, and Azure Translation API.</p>
 
+<h3>In case you want to access my web application, it is hosted here: <a href="https://ocr-translation.fly.dev/">https://ocr-translation.fly.dev/</a></h3>
+
 <h2>Description</h2>
 
 <p>The OCR Translator Web project is a web-based application designed to recognize text from images and translate it into various languages. The application leverages Tesseract OCR for text extraction, OpenCV for image preprocessing, and Azure Translation API for language translation. Users can upload an image containing text, and the system will process it to display the extracted and translated text. This tool is particularly useful for translating foreign documents, street signs, or any text captured via images.</p>
@@ -52,7 +54,7 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
     </li>
 </ol>
 
-<h3>In case you want to access my web application, it is hosted here: <a href="https://ocr-translation.fly.dev/">https://ocr-translation.fly.dev/</a></h3>
+
 
 <h2>Usage</h2>
 <ol>
