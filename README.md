@@ -52,6 +52,8 @@ source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`</code></pr
     </li>
 </ol>
 
+<h2>In case you want to access my web application, it is hosted <a href="https://ocr-translation.fly.dev/">here: https://ocr-translation.fly.dev/</a></h2>
+
 <h2>Usage</h2>
 <ol>
     <li>Open the application in your web browser.</li>
