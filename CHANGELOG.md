@@ -4,6 +4,18 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2026-07-07
+
+### Added
+- **Live hosted demo** on Hugging Face Spaces: https://huggingface.co/spaces/Zao0531/ocr-translator
+- GitHub Action auto-syncs the app to the Space on every push to `main`.
+
+### Fixed
+- Docker build on current base images: use `libgl1` (Debian trixie dropped `libgl1-mesa-glx`)
+  and `python:3.11-slim` (the pinned `numpy` requires Python ≥3.11).
+- Writable `/tmp/argos` model dir + `static/uploads` and a longer gunicorn timeout so the
+  first-use model download completes when hosted.
+
 ## [2.1.0] - 2026-07-07
 
 ### Added
@@ -44,5 +56,6 @@ Complete rewrite: self-contained, offline translation with an honest README.
 - Duplicated `MC_ocr_translation.py` (logic now lives in `ocrcore/`).
 - Runtime upload artifacts from version control.
 
+[2.1.1]: https://github.com/pedromussi1/OCRtranslator_Web/releases/tag/v2.1.1
 [2.1.0]: https://github.com/pedromussi1/OCRtranslator_Web/releases/tag/v2.1.0
 [2.0.0]: https://github.com/pedromussi1/OCRtranslator_Web/releases/tag/v2.0.0

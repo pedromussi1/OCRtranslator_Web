@@ -6,6 +6,8 @@
 
 <p align="center">Upload an image; the app OCRs the text and translates it into your chosen language — <b>fully offline</b>, no API keys or quotas.</p>
 
+<p align="center"><b>🚀 Live demo:</b> <a href="https://huggingface.co/spaces/Zao0531/ocr-translator">huggingface.co/spaces/Zao0531/ocr-translator</a></p>
+
 ## What changed from the original
 
 The original app worked but had one misleading claim and several rough edges. This rewrite
