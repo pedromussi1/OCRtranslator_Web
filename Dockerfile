@@ -1,5 +1,5 @@
-# Use the official Python image
-FROM python:3.10-slim
+# Use the official Python image (3.11 to match the pinned dependencies)
+FROM python:3.11-slim
 
 # Install Tesseract, OpenCV dependencies, and other necessary libraries
 RUN apt-get update && apt-get install -y \
