@@ -1,58 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Text Recognition Result</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            color: #333;
-        }
-        h1 {
-            color: #0056b3;
-        }
-        .image-container {
-            margin-bottom: 20px;
-        }
-        img {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            max-width: 20%;
-            height: auto;
-        }
-        .result-text {
-            margin-top: 20px;
-        }
-        pre {
-            background-color: #f8f8f8;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            white-space: pre-wrap; /* Maintain whitespace formatting */
-            word-wrap: break-word; /* Wrap long words */
-        }
-    </style>
-</head>
-<body>
-    <h1>Text Recognition Result</h1>
+{% extends "base.html" %}
+{% block title %}Translation · OCR Translator{% endblock %}
 
-    <div class="image-container">
-        <h2>Original Image:</h2>
-        <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Original Image">
+{% block content %}
+<div class="card">
+    <div class="result-head">
+        <div class="badge">Translation</div>
+        {% if source_name and target_name %}
+        <p class="muted">{{ source_name }} → {{ target_name }}</p>
+        {% endif %}
     </div>
 
-    <div class="result-text">
-        <h2>Recognized Text:</h2>
+    {% if translated_text %}
+    <div class="translation">{{ translated_text }}</div>
+    {% else %}
+    <p class="muted">No text could be read from this image. Try a clearer or higher-contrast photo.</p>
+    {% endif %}
+
+    {% if text %}
+    <details class="ocr">
+        <summary>Original text (OCR)</summary>
         <pre>{{ text }}</pre>
-    </div>
+    </details>
+    {% endif %}
 
-    <div class="result-text">
-        <h2>Translated Text:</h2>
-        <pre>{{ translated_text }}</pre>
-    </div>
+    <img class="uploaded" src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Your upload">
 
-    <a href="{{ url_for('index') }}">Upload Another Image</a>
-</body>
-</html>
+    <a href="/" class="btn secondary">Translate another image</a>
+</div>
+
+<style>
+    .result-head { text-align: center; margin-bottom: 16px; }
+    .badge {
+        display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .04em;
+        text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+        padding: 4px 10px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .result-head p { margin: 0; }
+    .translation {
+        font-size: 18px; line-height: 1.6; white-space: pre-wrap; word-break: break-word;
+        background: var(--accent-soft); border: 1px solid var(--border);
+        border-radius: 12px; padding: 18px; margin-bottom: 18px;
+    }
+    .ocr { margin-bottom: 18px; }
+    .ocr summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+    .ocr pre {
+        white-space: pre-wrap; word-break: break-word; margin: 10px 0 0;
+        background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+        padding: 12px; font-size: 13px; max-height: 200px; overflow: auto;
+    }
+    .uploaded {
+        display: block; max-width: 100%; max-height: 320px; margin: 0 auto 18px;
+        border-radius: 12px; border: 1px solid var(--border);
+    }
+</style>
+{% endblock %}
