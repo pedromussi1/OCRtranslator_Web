@@ -58,6 +58,10 @@
 <body>
     <h1>Upload Image for Text Translation</h1>
 
+    {% if error %}
+    <p style="color: #b00020;">{{ error }}</p>
+    {% endif %}
+
     <form class="upload-form" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" required>
         <label for="target_lang">Target Language:</label>

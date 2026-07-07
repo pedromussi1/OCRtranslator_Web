@@ -19,11 +19,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Set environment variables
-ENV FLASK_APP=app.py
-
 # Expose port 5000
 EXPOSE 5000
 
-# Run the Flask app
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Argos Translate downloads language models to this dir on first use; mount a volume
+# here to persist them across restarts (otherwise they re-download).
+ENV ARGOS_PACKAGES_DIR=/app/.argos
+
+# Serve with gunicorn (production WSGI server) instead of the Flask dev server.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "120", "app:app"]
