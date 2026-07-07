@@ -38,8 +38,26 @@ def detect_language(text: str, default: str = "en") -> str:
         return default
 
 
+def _install_one(from_code: str, to_code: str, available) -> bool:
+    """Install a single direct Argos package if available. Returns True on success."""
+    import argostranslate.package
+
+    match = next(
+        (p for p in available if p.from_code == from_code and p.to_code == to_code), None
+    )
+    if match is None:
+        return False
+    argostranslate.package.install_from_path(match.download())
+    return True
+
+
 def _ensure_package(from_code: str, to_code: str) -> None:
-    """Download+install the Argos package for a language pair if not already present."""
+    """Ensure a translation path exists for ``from_code -> to_code``.
+
+    Installs the direct package when available; otherwise falls back to an English pivot
+    (``from -> en`` + ``en -> to``), which Argos chains automatically. Raises ValueError
+    if no path can be built.
+    """
     key = (from_code, to_code)
     if key in _installed_pairs:
         return
@@ -57,15 +75,14 @@ def _ensure_package(from_code: str, to_code: str) -> None:
         if key not in installed:
             argostranslate.package.update_package_index()
             available = argostranslate.package.get_available_packages()
-            match = next(
-                (p for p in available if p.from_code == from_code and p.to_code == to_code),
-                None,
-            )
-            if match is None:
-                raise ValueError(
-                    f"No Argos Translate package available for {from_code} -> {to_code}."
-                )
-            argostranslate.package.install_from_path(match.download())
+            if not _install_one(from_code, to_code, available):
+                # No direct model — pivot through English.
+                ok_from = from_code == "en" or _install_one(from_code, "en", available)
+                ok_to = to_code == "en" or _install_one("en", to_code, available)
+                if not (ok_from and ok_to):
+                    raise ValueError(
+                        f"No Argos Translate path available for {from_code} -> {to_code}."
+                    )
         _installed_pairs.add(key)
 
 
