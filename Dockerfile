@@ -19,12 +19,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Expose port 5000
+# Writable dirs for runtime uploads and Argos model downloads (works whether the host
+# runs the container as root or a non-root user).
+ENV ARGOS_PACKAGES_DIR=/tmp/argos
+RUN mkdir -p static/uploads /tmp/argos && chmod -R 777 static/uploads /tmp/argos
+
 EXPOSE 5000
 
-# Argos Translate downloads language models to this dir on first use; mount a volume
-# here to persist them across restarts (otherwise they re-download).
-ENV ARGOS_PACKAGES_DIR=/app/.argos
-
-# Serve with gunicorn (production WSGI server) instead of the Flask dev server.
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "120", "app:app"]
+# Serve with gunicorn. Generous timeout: the first translation to a new language downloads
+# its model (~100-200 MB) before responding.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "300", "app:app"]
