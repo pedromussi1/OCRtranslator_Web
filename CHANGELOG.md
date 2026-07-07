@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-07-07
+
+### Added
+- Redesigned web UI matching the OCR BookFinder design system: responsive, dark-mode-aware
+  layout with a shared base template, drag-and-drop upload + image preview, a language
+  dropdown, a loading state during translation, and a cleaner results page that shows the
+  translation prominently with the detected `source → target` languages.
+
+### Changed
+- The result page now displays the auto-detected source language alongside the target.
+
 ## [2.0.0] - 2026-07-06
 
 Complete rewrite: self-contained, offline translation with an honest README.
@@ -33,4 +44,5 @@ Complete rewrite: self-contained, offline translation with an honest README.
 - Duplicated `MC_ocr_translation.py` (logic now lives in `ocrcore/`).
 - Runtime upload artifacts from version control.
 
+[2.1.0]: https://github.com/pedromussi1/OCRtranslator_Web/releases/tag/v2.1.0
 [2.0.0]: https://github.com/pedromussi1/OCRtranslator_Web/releases/tag/v2.0.0

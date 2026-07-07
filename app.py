@@ -15,7 +15,7 @@ import uuid
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
-from ocrcore import extract_text, translate_text
+from ocrcore import detect_language, extract_text, translate_text
 
 app = Flask(__name__)
 
@@ -24,6 +24,18 @@ ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB cap
+
+# Language code -> display name, for a friendly "Spanish → English" label on the result.
+LANGUAGES = {
+    "ar": "Arabic", "de": "German", "en": "English", "es": "Spanish", "fr": "French",
+    "hi": "Hindi", "it": "Italian", "ja": "Japanese", "ko": "Korean", "nl": "Dutch",
+    "pl": "Polish", "pt": "Portuguese", "ru": "Russian", "tr": "Turkish", "uk": "Ukrainian",
+    "zh": "Chinese",
+}
+
+
+def _lang_name(code: str) -> str:
+    return LANGUAGES.get(code, code.upper())
 
 
 def _allowed(filename: str) -> bool:
@@ -47,8 +59,9 @@ def index():
         file.save(file_path)
 
         text = extract_text(file_path)
+        source_lang = detect_language(text)
         try:
-            translated_text = translate_text(text, to_lang=target_lang)
+            translated_text = translate_text(text, to_lang=target_lang, from_lang=source_lang)
         except ValueError as exc:
             # e.g. no Argos package for the requested language pair
             return render_template("index.html", error=str(exc))
@@ -58,6 +71,8 @@ def index():
             original_image=stored_name,
             text=text,
             translated_text=translated_text,
+            source_name=_lang_name(source_lang),
+            target_name=_lang_name(target_lang),
         )
 
     return render_template("index.html")
