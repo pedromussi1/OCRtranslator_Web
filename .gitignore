@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Runtime image uploads (not source)
+static/uploads/
+uploads/
+
+# Argos Translate downloaded language models
+.argos/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
